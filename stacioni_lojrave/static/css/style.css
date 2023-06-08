@@ -1,8 +1,276 @@
+/* style.css */
+
+/* Card Container */
+body {
+    background-image: url('https://images.unsplash.com/photo-1529154691717-3306083d869e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+.card {
+    width: 18rem;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    margin-right: 30px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Card Image */
+  .card-img-top {
+    height: 300px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  /* Card Body */
+  .card-body {
+    padding: 15px;
+  }
+  
+  /* Card Title */
+  .card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  .card-title:hover {
+    color: #007bff;
+  }
+  
+  /* Card Price */
+  .card-text {
+    color: #dc3545;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  /* Card Description */
+  .card-description {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+  }
+  
+  /* Card Button */
+  .card-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Margins */
+  .row {
+    margin-top: 20px;
+  }
+  
+  .column {
+    margin-bottom: 20px;
+  }
 
 
-.card-text{
-    color: red;
-    background-color: yellow;
+  /* style.css */
+
+  .login-form-container {
+    max-width: 400px;
+    margin-top: 200px;
+    margin-left: 28%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+  }
+  
+  /* Login Form Title */
+  .login-form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Login Form Input */
+  .login-form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .login-form-container input[type="text"],
+  .login-form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Login Form Button */
+  .login-form-container button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-form-container button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Login Form Messages */
+  .login-form-container .messages {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .login-form-container .success {
+    color: green;
+  }
+
+  .register-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+  }
+  
+  .register-form-container .card-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .register-form-container .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .register-form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .register-form-container input[type="text"],
+  .register-form-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
-
-
+  .register-form-container button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-form-container button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .white-box {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  .slider-container {
+    /* Add your slider container styles here */
+  }
+  
+  .section.product {
+    /* Add your product section styles here */
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .product-details {
+    /* display: flex; */
+    margin-right: 50px;
+  }
+  
+  .product-details .product-image {
+    flex: 0 0 auto;
+    margin-right: 50px;
+  }
+  
+  .product-details .product-info {
+    flex: 1 1 auto;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  
+.product_name {
+    font-size: 35px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+  }
+  
+  /* Add any additional styles as needed */
+  

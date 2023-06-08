@@ -4,18 +4,31 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="img-fluid">
+        <div class="white-box">
+          <div class="slider-container">
+            <!-- Add your slider code here -->
+            <main>
+              <div class="section product panelContainer platformplaystation4" rel="830337">
+                <!-- Code snippet goes here -->
+              </div>
+            </main>
+          </div>
+          <img src="{{ product.image_url }}" alt="{{ product.name }}" class="img-fluid">
+        </div>
       </div>
       <div class="col-md-8">
-        <h1>{{ product.name }}</h1>
-        <h2>{{ product.price }}</h2>
-        <p>{{ product.description }}</p>
-        {% if product.stock > 0 %}
-          <p>Available</p>
-          <button class="btn btn-primary">Add to cart</button>
-        {% else %}
-          <p>Out of stock</p>
-        {% endif %}
+        <div class="white-box">
+          <h1 class="product_name">{{ product.name }}</h1>
+          <h2>{{ product.price }}</h2>
+          <p>{{ product.description }}</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae libero a est faucibus auctor. Duis at fringilla metus. Aliquam erat volutpat. Nulla nec eros sed nisi eleifend tincidunt. In maximus nunc eu sagittis efficitur.</p>
+          {% if product.stock > 0 %}
+            <p>Available</p>
+            <button class="btn btn-primary">Add to cart</button>
+          {% else %}
+            <p>Out of stock</p>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>

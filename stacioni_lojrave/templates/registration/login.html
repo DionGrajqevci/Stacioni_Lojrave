@@ -1,24 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Login</h2>
-  {% if messages.success %}
-    <ul class="messages">
+  <div class="login-form-container">
+    <h2>Login</h2>
+    {% if messages.success %}
+      <ul class="messages">
         {% for message in messages.success %}
-            <li class="success">{{ message }}</li>
+          <li class="success">{{ message }}</li>
         {% endfor %}
-    </ul>
-{% endif %}
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <div>
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username">
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password">
-    </div>
-    <button type="submit">Login</button>
-  </form>
+      </ul>
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username">
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password">
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
 {% endblock %}

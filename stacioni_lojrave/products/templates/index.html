@@ -7,7 +7,7 @@
         <div class="column">
             <div class="card" style="width: 18rem;">
                 <a href="{% url 'product-detail' product.pk %}" class="card-title">{{ product.name }}</a>
-                    <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap">
+                <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap">
                 </a>
                 <div class="card-body">
                     <a href="{% url 'product-detail' product.pk %}">
@@ -18,5 +18,19 @@
             </div>
         </div>
         {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if products.has_previous %}
+            <a href="?page=1">&laquo; First </a>
+            <a href="?page={{ products.previous_page_number }}"> Previous </a>
+        {% endif %}
+
+        <a href="?page={{ products.number }}" class="current-page">{{ products.number }}</a>
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}"> Next </a>
+            <a href="?page={{ products.paginator.num_pages }}"> Last &raquo;</a>
+        {% endif %}
     </div>
 {% endblock %}

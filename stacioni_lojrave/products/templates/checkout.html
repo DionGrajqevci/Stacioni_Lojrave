@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="payment-form"  style="background-color: white;">
+  <form id="payment-form" method="post">
+    {% csrf_token %}
+    
+    <!-- Stripe Card Element -->
+    <div id="card-element" class="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+    
+    <!-- Display payment errors -->
+    <div id="card-errors" role="alert"></div>
+    
+    <!-- Hidden input field for payment method ID -->
+    <input type="hidden" id="payment-method-id" name="payment_method_id">
+    
+    <!-- Submit button -->
+    <button id="submit-button" class="btn btn-primary" type="submit" data-secret="{{ client_secret }}">
+      Pay Now
+    </button>
+  </form>
+</div>
+  
+  <!-- Include Stripe.js library -->
+<script src="https://js.stripe.com/v3/"></script>
+  
+<!-- Custom JavaScript to handle Stripe integration -->
+<script>
+  // Set your publishable key
+  const stripe = Stripe('pk_test_51NIHg2AO2XNaTIsphRTjMMDtT92z5XoJpOl6Yw8HDJLpcbHjhTVfGhxM0iLq5UqwJfPG4fvXajtFxNMdYL1P6ZWS00deeQAWF4');
+    
+  // Create a new Stripe Elements instance
+  const elements = stripe.elements();
+    
+  // Create a card Element
+  const cardElement = elements.create('card');
+    
+  // Mount the card Element to the card-element div
+  cardElement.mount('#card-element');
+    
+  // Handle form submission
+  const form = document.getElementById('payment-form');
+  const errorElement = document.getElementById('card-errors');
+  const submitButton = document.getElementById('submit-button');
+  const paymentMethodIdField = document.getElementById('payment-method-id');
+    
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+      
+    // Disable the submit button to prevent multiple submissions
+    submitButton.disabled = true;
+      
+    // Create a payment method using the card Element
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+    });
+      
+    if (error) {
+      // Display error message
+      errorElement.textContent = error.message;
+      submitButton.disabled = false;
+    } else {
+      // Get the payment method ID
+      const paymentMethodId = paymentMethod.id;
+        
+      // Assign the payment method ID to the hidden input field
+      paymentMethodIdField.value = paymentMethodId;
+        
+      // Submit the form to your server
+      // form.submit();
+      
+      // Redirect the user to success.html
+      window.location.href = "{% url 'success' %}";
+    }
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,51 @@
+<!-- cart.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cart-container">
+  <h1>Cart</h1>
+
+  {% if cart_items %}
+    <ul class="cart-items">
+      {% for item in cart_items %}
+        <li>
+          <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" width="100">
+          <p>{{ item.product.name }}</p>
+          <p>Price: ${{ item.product.price }}</p>
+          <p>Quantity: {{ item.quantity }}</p>
+          <a href="{% url 'remove_from_cart' item.id %}">Remove</a>
+        </li>
+      {% endfor %}
+    </ul>
+    
+    <p>Total: ${{ total_price }}</p>
+    
+    <form action="{% url 'apply_voucher' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="voucher_code" placeholder="Enter voucher code">
+      <button type="submit">Apply Voucher</button>
+    </form>
+    
+    <form action="{% url 'checkout' %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="payment_method_id" value="">
+      <button type="submit">Checkout</button>
+    </form>
+    
+    {% if discount %}
+      <p>Discount: {{ discount }} %</p>
+    {% endif %}
+    
+    <p>Final Total: ${{ total_price_after_discount }}</p>    
+  
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+</div>
+
+<script>// Update the value of the hidden input field with the payment method ID
+  var paymentMethodId = 'your_payment_method_id'; // Replace with the actual payment method ID from Stripe
+  document.querySelector('input[name="payment_method_id"]').value = paymentMethodId;
+  </script>
+
+{% endblock %}

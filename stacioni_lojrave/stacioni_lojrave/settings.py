@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+import stripe
+
+
+
+stripe.api_key = "pk_test_51NIHg2AO2XNaTIsphRTjMMDtT92z5XoJpOl6Yw8HDJLpcbHjhTVfGhxM0iLq5UqwJfPG4fvXajtFxNMdYL1P6ZWS00deeQAWF4"
+STRIPE_SECRET_KEY ="sk_test_51NIHg2AO2XNaTIsp8fnq813dwqt8e0eJHLYnzWm3w1D33RQxhTOuZiCkYhlzPXH9QffncB7DcyyYBi7bj6hbIx3c00qo4wqHqS"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -116,6 +122,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

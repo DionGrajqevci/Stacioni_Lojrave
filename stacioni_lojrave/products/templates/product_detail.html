@@ -22,14 +22,22 @@
           <h2>{{ product.price }}</h2>
           <p>{{ product.description }}</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae libero a est faucibus auctor. Duis at fringilla metus. Aliquam erat volutpat. Nulla nec eros sed nisi eleifend tincidunt. In maximus nunc eu sagittis efficitur.</p>
-          {% if product.stock > 0 %}
-            <p>Available</p>
-            <button class="btn btn-primary">Add to cart</button>
+          {% if user.is_authenticated %}
+            {% if product.stock > 0 %}
+              <p style="color: green;">Available</p>
+              <form action="{% url 'add_to_cart' product_id=product.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary">Add to cart</button>
+              </form>
+            {% else %}
+              <p style="color: red;">Out of stock</p>
+            {% endif %}
           {% else %}
-            <p>Out of stock</p>
+            <p>You need to be logged in to add this item to your cart. <a href="{% url 'login' %}">Log in</a></p>
           {% endif %}
         </div>
       </div>
     </div>
   </div>
 {% endblock %}
+

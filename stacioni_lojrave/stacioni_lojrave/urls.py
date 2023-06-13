@@ -18,8 +18,10 @@ from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/products/')),
     path('admin/', admin.site.urls),
     path("products/",include("products.urls")),
     path('users/',include("users.urls")),

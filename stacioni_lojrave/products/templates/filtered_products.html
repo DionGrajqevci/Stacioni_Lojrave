@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 style="font-family: Arial, Helvetica, sans-serif;">Products</h1>
+    <h1 style="font-family: Arial, Helvetica, sans-serif;color: white;">Products</h1>
     <div class="row">
         {% for product in products %}
         <div class="column">
             <div class="card" style="width: 18rem;">
-                <a href="{% url 'product-detail' product.pk %}" class="card-title">{{ product.name }}</a>
                 <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap">
                 </a>
                 <div class="card-body">

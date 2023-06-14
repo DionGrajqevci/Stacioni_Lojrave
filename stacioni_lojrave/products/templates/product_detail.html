@@ -21,7 +21,6 @@
           <h1 class="product_name">{{ product.name }}</h1>
           <h2>{{ product.price }}</h2>
           <p>{{ product.description }}</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae libero a est faucibus auctor. Duis at fringilla metus. Aliquam erat volutpat. Nulla nec eros sed nisi eleifend tincidunt. In maximus nunc eu sagittis efficitur.</p>
           {% if user.is_authenticated %}
             {% if product.stock > 0 %}
               <p style="color: green;">Available</p>

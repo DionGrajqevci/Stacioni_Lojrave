@@ -24,7 +24,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="/products/">StacioniLojrave</a>
+      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_03bXk4eUXb.json"  background="transparent"  speed="1"  style="width: 300px; height: 100px;"  loop  autoplay></lottie-player>
+
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
           <a class="nav-link" href="/products/">Home <span class="sr-only">(current)</span></a>
@@ -41,14 +42,21 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'filter_products' 'Accessories' %}">Accessories</a>
         </li>
-        {% if user.is_authenticated%}
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0" action="{% url 'search_products' %}" method="GET">
+        <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'cart' %}">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
-      
         {% else %}
         <li class="nav-item">
           <a class="nav-link" href="/users/login/">Login</a>
@@ -57,12 +65,7 @@
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
         {% endif %}
-
       </ul>
-      <form class="form-inline my-2 my-lg-0" action="{% url 'search_products' %}" method="GET">
-        <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
     </div>
   </nav>
   
@@ -81,8 +84,21 @@
   </div>
 
 
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2023 Stacioni Lojrave</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

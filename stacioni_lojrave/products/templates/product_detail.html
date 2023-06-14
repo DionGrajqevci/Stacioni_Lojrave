@@ -27,7 +27,10 @@
               <p style="color: green;">Available</p>
               <form action="{% url 'add_to_cart' product_id=product.id %}" method="post">
                 {% csrf_token %}
-                <button class="btn btn-primary">Add to cart</button>
+                <button class="btn btn-primary">
+                  <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_6efyjrm3.json" background="transparent" speed="1" style="width: 100px; height: 100px;" hover loop autoplay></lottie-player>
+                  Add to cart
+                </button> 
               </form>
             {% else %}
               <p style="color: red;">Out of stock</p>
@@ -39,5 +42,6 @@
       </div>
     </div>
   </div>
-{% endblock %}
 
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+{% endblock %}

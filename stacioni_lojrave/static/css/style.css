@@ -277,9 +277,13 @@ body {
 
   .cart-container {
     background-color: white;
+    padding: 20px;
+    margin-top: 50px;
     
   }
 
   .payement-form{
     background-color: white;
+    padding: 20px;
+    margin-top: 50px;
   }

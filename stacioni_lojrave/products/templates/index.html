@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Products</h1>
+    <h1 style="font-family: Arial, Helvetica, sans-serif;">Products</h1>
     <div class="row">
         {% for product in products %}
         <div class="column">
@@ -22,15 +22,21 @@
 
     <div class="pagination">
         {% if products.has_previous %}
-            <a href="?page=1">&laquo; First </a>
-            <a href="?page={{ products.previous_page_number }}"> Previous </a>
+          <a href="?page=1" class="page-link">&laquo; First</a>
+          <a href="?page={{ products.previous_page_number }}" class="page-link">Previous</a>
         {% endif %}
-
-        <a href="?page={{ products.number }}" class="current-page">{{ products.number }}</a>
-
+        
+        {% for page_number in products.paginator.page_range %}
+          {% if page_number == products.number %}
+            <a href="?page={{ page_number }}" class="page-link current-page">{{ page_number }}</a>
+          {% else %}
+            <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
+          {% endif %}
+        {% endfor %}
+        
         {% if products.has_next %}
-            <a href="?page={{ products.next_page_number }}"> Next </a>
-            <a href="?page={{ products.paginator.num_pages }}"> Last &raquo;</a>
+          <a href="?page={{ products.next_page_number }}" class="page-link">Next</a>
+          <a href="?page={{ products.paginator.num_pages }}" class="page-link">Last &raquo;</a>
         {% endif %}
-    </div>
+      </div>
 {% endblock %}

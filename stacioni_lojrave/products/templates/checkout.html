@@ -1,13 +1,29 @@
+<!-- payment_form.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="payment-form"  style="background-color: white;">
+<div class="payment-form" style="background-color: white;">
   <form id="payment-form" method="post">
     {% csrf_token %}
     
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="name">First Name</label>
+        <input type="text" id="name" name="name" class="form-control">
+      </div>
+      
+      <div class="form-group col-md-6">
+        <label for="surname">Last Name</label>
+        <input type="text" id="surname" name="surname" class="form-control">
+      </div>
+    </div>
+    
     <!-- Stripe Card Element -->
-    <div id="card-element" class="card-element">
-      <!-- A Stripe Element will be inserted here. -->
+    <div class="form-group">
+      <label for="card-element">Card Details</label>
+      <div id="card-element" class="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
     </div>
     
     <!-- Display payment errors -->
@@ -22,8 +38,8 @@
     </button>
   </form>
 </div>
-  
-  <!-- Include Stripe.js library -->
+
+<!-- Include Stripe.js library -->
 <script src="https://js.stripe.com/v3/"></script>
   
 <!-- Custom JavaScript to handle Stripe integration -->

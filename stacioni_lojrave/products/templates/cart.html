@@ -6,46 +6,63 @@
   <h1>Cart</h1>
 
   {% if cart_items %}
-    <ul class="cart-items">
+    <table class="cart-items">
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
       {% for item in cart_items %}
-        <li>
-          <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" width="100">
-          <p>{{ item.product.name }}</p>
-          <p>Price: ${{ item.product.price }}</p>
-          <p>Quantity: {{ item.quantity }}</p>
-          <a href="{% url 'remove_from_cart' item.id %}">Remove</a>
-        </li>
+        <tr>
+          <td><img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" width="100"></td>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.product.price }}</td>
+          <td><a href="{% url 'remove_from_cart' item.id %}">Remove</a></td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
     
-    <p>Total: ${{ total_price }}</p>
+    <p>Total: {{ total_price }}€</p>
     
     <form action="{% url 'apply_voucher' %}" method="post">
       {% csrf_token %}
       <input type="text" name="voucher_code" placeholder="Enter voucher code">
-      <button type="submit">Apply Voucher</button>
+      <button type="submit" class="btn btn-primary">Apply Voucher</button>
     </form>
     
     <form action="{% url 'checkout' %}" method="post">
       {% csrf_token %}
       <input type="hidden" name="payment_method_id" value="">
-      <button type="submit">Checkout</button>
+      <button type="submit" class="btn btn-primary">Checkout</button>
     </form>
     
     {% if discount %}
       <p>Discount: {{ discount }} %</p>
+      <p>Final Total: {{ total_price_after_discount }}€</p>
+    {% else %}
+      <p id="final-total" style="display: none;">Final Total: {{ total_price_after_discount }}€</p>
     {% endif %}
-    
-    <p>Final Total: ${{ total_price_after_discount }}</p>    
   
   {% else %}
     <p>Your cart is empty.</p>
   {% endif %}
 </div>
 
-<script>// Update the value of the hidden input field with the payment method ID
+<script>
+  // Update the value of the hidden input field with the payment method ID
   var paymentMethodId = 'your_payment_method_id'; // Replace with the actual payment method ID from Stripe
   document.querySelector('input[name="payment_method_id"]').value = paymentMethodId;
-  </script>
+  
+  // Check if discount applied and show/hide the final total accordingly
+  var discountApplied = {% if discount %} true {% else %} false {% endif %};
+  var finalTotal = document.getElementById('final-total');
+  
+  if (discountApplied) {
+    finalTotal.style.display = 'block';
+  }
+</script>
 
 {% endblock %}

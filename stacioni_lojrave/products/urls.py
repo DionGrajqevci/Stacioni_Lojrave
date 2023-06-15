@@ -7,6 +7,7 @@ urlpatterns = [
     path("", views.index),
     path("new", views.new),
     path('products/<int:pk>/', views.ProductDetailView.as_view(), name='product-detail'),
+    path('products/<int:pk>/add_review/', views.add_review, name='add_review'),
     path('products/<str:product_type>/', views.filter_products, name='filter_products'),
     path('search/', views.search_products, name='search_products'),
     path('cart/', cart_view, name='cart'),
@@ -18,5 +19,6 @@ urlpatterns = [
     path('futbollistis/', futbollisti_list, name='futbollisti_list'),
     path('futbollisti/', views.futbollisti_view, name='futbollisti'),
     path('futbollisti/add/', add_futbollisti, name='add_futbollisti'),
+    
 ]
 

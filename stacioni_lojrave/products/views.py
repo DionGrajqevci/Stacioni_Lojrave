@@ -2,16 +2,19 @@ from http.client import HTTPResponse
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Product,Futbollisti,Skuadra
+from .models import Product,Futbollisti,Skuadra,Review
 from django.views.generic.detail import DetailView
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect
-from .models import Cart,Offer
+from .models import Cart,Offer,Review
 from django.db.models import Sum,F
 import stripe
 from django.template.defaultfilters import floatformat
-from .forms import FutbollistiForm
+from .forms import FutbollistiForm,ReviewForm
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -37,11 +40,19 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'product_detail.html'
     context_object_name = 'product'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = self.object
+        reviews = Review.objects.filter(product=product)
+        context['reviews'] = reviews
+        return context
 
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    context = {'product': product}
+    reviews = Review.objects.filter(product=product)
+    context = {'product': product, 'reviews': reviews}
     return render(request, 'products/product_detail.html', context)
 
 def filter_products(request, product_type):
@@ -190,5 +201,22 @@ def add_futbollisti(request):
             return redirect('futbollisti_list')
     else:
         form = FutbollistiForm()
-    
-    return render(request, 'futbollisti.html', {'futbollisti': Futbollisti.objects.all(), 'form': form})
+    return render(request, 'futbollisti.html', {'form': form})
+
+@login_required
+def add_review(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.name = request.user.username
+            review.save()
+            return redirect('product-detail', pk=pk)
+    else:
+        form = ReviewForm(initial={'name': request.user.username})
+
+    context = {'form': form, 'product': product}
+    return render(request, 'products/add_review.html', context)
+

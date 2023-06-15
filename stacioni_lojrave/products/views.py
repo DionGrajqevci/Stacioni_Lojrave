@@ -2,7 +2,7 @@ from http.client import HTTPResponse
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Product
+from .models import Product,Futbollisti,Skuadra
 from django.views.generic.detail import DetailView
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
@@ -11,6 +11,8 @@ from .models import Cart,Offer
 from django.db.models import Sum,F
 import stripe
 from django.template.defaultfilters import floatformat
+from .forms import FutbollistiForm
+
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -150,3 +152,43 @@ def checkout(request):
 
 def success(request):
     return render(request, 'success.html')
+
+
+def futbollisti_list(request):
+    futbollistis = Futbollisti.objects.all()
+    context = {'futbollistis': futbollistis}
+    return render(request, 'base.html', context)
+
+def your_view_function(request):
+    futbollistis = Futbollisti.objects.all()
+    context = {
+        'futbollistis': futbollistis
+    }
+    return render(request, 'base.html', context)
+
+
+def futbollisti_view(request):
+    futbollistis = Futbollisti.objects.all()
+    context = {
+        'futbollistis': futbollistis
+    }
+    return render(request, 'futbollisti.html', context)
+
+def skuadra_view(request):
+    skuadras = Skuadra.objects.all()
+    context = {
+        'skuadras': skuadras
+    }
+    return render(request, 'futbollisti.html', context)
+
+
+def add_futbollisti(request):
+    if request.method == 'POST':
+        form = FutbollistiForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('futbollisti_list')
+    else:
+        form = FutbollistiForm()
+    
+    return render(request, 'futbollisti.html', {'futbollisti': Futbollisti.objects.all(), 'form': form})

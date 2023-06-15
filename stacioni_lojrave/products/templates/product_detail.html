@@ -37,6 +37,10 @@
           {% else %}
             <p>You need to be logged in to add this item to your cart. <a href="{% url 'login' %}">Log in</a></p>
           {% endif %}
+
+          {% for futbollisti in futbollistis %}
+          <li>{{ futbollisti.name }}</li>
+      {% endfor %}
         </div>
       </div>
     </div>

@@ -20,6 +20,12 @@
         {% endfor %}
     </div>
 
+    <div class="futbollisti">
+      {% for futbollisti in futbollistis %}
+        <p style="color: black;">{{  futbollisti.name }}</p>
+    {% endfor %}
+    </div>
+
     <div class="pagination">
         {% if products.has_previous %}
           <a href="?page=1" class="page-link">&laquo; First</a>

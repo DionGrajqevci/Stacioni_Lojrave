@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from .views import add_to_cart
-from .views import cart_view,remove_from_cart
+from .views import cart_view,remove_from_cart,futbollisti_list,add_futbollisti
 
 urlpatterns = [
     path("", views.index),
@@ -15,5 +15,8 @@ urlpatterns = [
     path('apply-voucher/', views.apply_voucher, name='apply_voucher'),
     path('checkout/', views.checkout, name='checkout'),
     path('success/', views.success, name='success'),
+    path('futbollistis/', futbollisti_list, name='futbollisti_list'),
+    path('futbollisti/', views.futbollisti_view, name='futbollisti'),
+    path('futbollisti/add/', add_futbollisti, name='add_futbollisti'),
 ]
 

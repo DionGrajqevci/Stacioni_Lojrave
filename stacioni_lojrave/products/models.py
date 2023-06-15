@@ -37,3 +37,18 @@ class Cart(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+class Skuadra(models.Model):
+    name = models.CharField(max_length=100)
+    skuadra_id = models.IntegerField(unique=True)
+
+    def __str__(self):
+        return f"{self.name}56162"
+
+class Futbollisti(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    team = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.name}56162"
